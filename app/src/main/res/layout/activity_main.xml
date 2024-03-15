@@ -22,69 +22,76 @@
 
     <Button
         android:id="@+id/btGallery"
-        android:layout_width="0dp"
-        android:layout_height="55dp"
+        android:layout_width="152dp"
+        android:layout_height="42dp"
         android:layout_margin="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
         android:onClick="abrirGaleria"
         android:text="Galería"
-        app:layout_constraintBottom_toTopOf="@+id/btCamera"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/btCamera"
+        app:layout_constraintEnd_toEndOf="@+id/txtTitulo"
+        app:layout_constraintHorizontal_bias="0.631"
         app:layout_constraintStart_toEndOf="@+id/image_view"
         app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
 
     <Button
         android:id="@+id/btCamera"
-        android:layout_width="0dp"
-        android:layout_height="55dp"
+        android:layout_width="148dp"
+        android:layout_height="45dp"
         android:layout_margin="5dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="28dp"
         android:onClick="abrirCamera"
         android:text="Cámara"
         app:layout_constraintBottom_toTopOf="@+id/map"
+        app:layout_constraintEnd_toEndOf="@+id/txtTitulo"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/btGallery"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/image_view"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
+        app:layout_constraintStart_toStartOf="@+id/btGallery"
+        app:layout_constraintTop_toBottomOf="@+id/btGallery"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/image_view"
         android:layout_width="128dp"
         android:layout_height="101dp"
         android:layout_margin="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtresults"
+        app:layout_constraintBottom_toTopOf="@+id/map"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.279"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btGallery"
+        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintStart_toStartOf="@+id/txtTitulo"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="334dp"
-        android:layout_height="366dp"
+        android:layout_width="410dp"
+        android:layout_height="392dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         app:layout_constraintBottom_toTopOf="@+id/txtresults"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
-        app:layout_constraintVertical_bias="0.728"
+        app:layout_constraintVertical_bias="1.0"
         map:cameraZoom="10"
         map:uiRotateGestures="true"
         map:uiZoomControls="true" />
 
     <TextView
         android:id="@+id/txtresults"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="383dp"
+        android:layout_height="109dp"
         android:layout_margin="10dp"
         android:inputType="textMultiLine"
         android:scrollbars="vertical"
         android:text="Resultados:"
-        app:layout_constraintBottom_toTopOf="@id/btText" />
+        app:layout_constraintBottom_toTopOf="@id/btText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btText"
