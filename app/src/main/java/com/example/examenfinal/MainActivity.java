@@ -29,6 +29,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -269,7 +270,15 @@ public class MainActivity extends AppCompatActivity
         requestQueue.add(jsonObjectRequest);
     }
 
+    Polygon currentRectangle; // Variable para mantener una referencia al rectángulo actual en el mapa
+
+    // Método para dibujar el rectángulo en el mapa
     public void drawRectangleOnMap(double west, double east, double north, double south, double geoPtLat, double geoPtLng) {
+        // Borrar el rectángulo actual si existe
+        if (currentRectangle != null) {
+            currentRectangle.remove();
+        }
+
         // Crear los puntos del rectángulo en el mapa
         LatLng southWest = new LatLng(south, west);
         LatLng northEast = new LatLng(north, east);
@@ -280,8 +289,8 @@ public class MainActivity extends AppCompatActivity
                 .strokeColor(Color.RED)
                 .fillColor(Color.TRANSPARENT);
 
-        // Añadir el rectángulo al mapa
-        mMap.addPolygon(rectangleOptions);
+        // Añadir el rectángulo al mapa y guardar la referencia en currentRectangle
+        currentRectangle = mMap.addPolygon(rectangleOptions);
 
         // Mover la cámara al centro del rectángulo y ajustar el zoom para que se vea bien
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
@@ -293,7 +302,6 @@ public class MainActivity extends AppCompatActivity
         // Mover la cámara al centro del rectángulo
         LatLng center = new LatLng(geoPtLat, geoPtLng);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, 4));
-
     }
 
 
