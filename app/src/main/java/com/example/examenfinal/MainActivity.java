@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity
                             double geoPtLng = geoPtArray.getDouble(1);
 
                             // Mostrar los datos en el TextView
-                            String countryInfoText = "Country Name: " + countryName + "\n" +
+                            String countryInfoText = "Paìs: " + countryName + "\n" +
                                     "Capital: " + capitalName + "\n" +
                                     "ISO 2 Code: " + iso2 + "\n" +
                                     "ISO 3 Code: " + iso3 + "\n" +
@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity
                             txtResults.setText(countryInfoText);
 
                             // Llamar al método para pintar el cuadrado en el mapa
-                            drawRectangleOnMap(west, east, north, south);
+                            drawRectangleOnMap(west, east, north, south,geoPtLat, geoPtLng);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -269,16 +269,19 @@ public class MainActivity extends AppCompatActivity
         requestQueue.add(jsonObjectRequest);
     }
 
-    public void drawRectangleOnMap(double west, double east, double north, double south) {
+    public void drawRectangleOnMap(double west, double east, double north, double south, double geoPtLat, double geoPtLng) {
         // Crear los puntos del rectángulo en el mapa
         LatLng southWest = new LatLng(south, west);
         LatLng northEast = new LatLng(north, east);
 
         // Crear el rectángulo
-        mMap.addPolygon(new PolygonOptions()
+        PolygonOptions rectangleOptions = new PolygonOptions()
                 .add(southWest, new LatLng(north, west), northEast, new LatLng(south, east))
                 .strokeColor(Color.RED)
-                .fillColor(Color.TRANSPARENT));
+                .fillColor(Color.TRANSPARENT);
+
+        // Añadir el rectángulo al mapa
+        mMap.addPolygon(rectangleOptions);
 
         // Mover la cámara al centro del rectángulo y ajustar el zoom para que se vea bien
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
@@ -286,6 +289,12 @@ public class MainActivity extends AppCompatActivity
         builder.include(northEast);
         LatLngBounds bounds = builder.build();
         mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0));
+
+        // Mover la cámara al centro del rectángulo
+        LatLng center = new LatLng(geoPtLat, geoPtLng);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, 4));
+
     }
+
 
 }

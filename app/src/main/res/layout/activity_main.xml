@@ -7,49 +7,49 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <TextView
         android:id="@+id/txtTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="16dp"
         android:background="#FFEB3B"
-        android:text="reconocer bandera"
+        android:text="Reconocer Bandera"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <Button
         android:id="@+id/btGallery"
-        android:layout_width="152dp"
-        android:layout_height="42dp"
+        android:layout_width="150dp"
+        android:layout_height="47dp"
         android:layout_margin="5dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:onClick="abrirGaleria"
         android:text="Galería"
+        app:layout_constraintBottom_toTopOf="@+id/map"
         app:layout_constraintEnd_toEndOf="@+id/txtTitulo"
-        app:layout_constraintHorizontal_bias="0.631"
         app:layout_constraintStart_toEndOf="@+id/image_view"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
+        app:layout_constraintVertical_bias="0.028" />
 
     <Button
         android:id="@+id/btCamera"
-        android:layout_width="148dp"
-        android:layout_height="45dp"
-        android:layout_margin="5dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="150dp"
+        android:layout_height="47dp"
         android:onClick="abrirCamera"
         android:text="Cámara"
         app:layout_constraintBottom_toTopOf="@+id/map"
-        app:layout_constraintEnd_toEndOf="@+id/txtTitulo"
+        app:layout_constraintEnd_toEndOf="@+id/btGallery"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/btGallery"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="@+id/btGallery"
         app:layout_constraintTop_toBottomOf="@+id/btGallery"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.434" />
 
     <ImageView
         android:id="@+id/image_view"
@@ -62,7 +62,7 @@
         app:layout_constraintStart_toStartOf="@+id/txtTitulo"
         app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:srcCompat="@drawable/icono" />
 
     <fragment
         android:id="@+id/map"
